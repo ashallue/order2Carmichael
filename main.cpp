@@ -17,7 +17,11 @@ int main() {
   cout << mod_power2(293084723, 239847, 1698711) << "\n";
   cout << mod_power1(293423, 12908304, 23897425) << "\n";
   cout << mod_power2(293423, 12908304, 23897425) << "\n";
-
+ 
+  // testing is_prime_fermat with 100, 101, and 102
+  cout << "100 is prime: " << is_prime_fermat(100, 2) << "\n";
+  cout << "101 is prime: " << is_prime_fermat(101, 2) << "\n";
+  cout << "102 is prime: " << is_prime_fermat(102, 2) << "\n";
   
   /*
   for(long i = 2; i < 20; i++){
