@@ -11,6 +11,10 @@ using namespace std;
 
 int main() {
   std::cout << "Hello World!\n";
+
+  cout << "size of int: " << sizeof(int) << "\n";
+  cout << "size of long: " << sizeof(long) << "\n";
+  cout << "size of long long: " << sizeof(long long) << "\n";
   
   // 293084723^239847 mod 1698711 = 571172
   // 293423^12908304 mod 23897425 = 12360991
@@ -22,7 +26,7 @@ int main() {
   // testing is_prime_fermat with 100, 101, and 102
   cout << "100 is prime: " << is_prime_fermat(100, 2) << "\n";
   cout << "101 is prime: " << is_prime_fermat(101, 2) << "\n";
-  cout << "102 is prime: " << is_prime_fermat(102, 2) << "\n";
+  cout << "1299721 is prime: " << is_prime_fermat(1299721, 2) << "\n";
 
   // testing gcd
   cout << "gcd(15, 9) = " << gcd(15,9) << "\n";
