@@ -61,6 +61,11 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
   // boolean for the inner loop, a is used for generator search
   bool done;
   long a;
+  // these are used in the inner loop for powers needed
+  long full_power;
+  long sans_q_power;
+  // these variables will store gcds
+  long g1; long g2; long g3;
 
   // Outer loop is over the prime_factors vector, so checking all q | n-1
   for(long i = 0; i < prime_factors.size(); i++){
@@ -75,10 +80,29 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
     done = false;
     a = 2;
     while(!done){
+      // compute the two powers needed
+      full_power = mod_power1(a, n-1, n);
+      sans_q_power = mod_power1(a, (n-1) / prime_factors.at(i), n);
+
+      // compute gcds with n.  Unlikely to catch a factor, but worth checking
+      g1 = gcd(a,n);
+      g2 = gcd(full_power, n);
+      g3 = gcd(sans_q_power, n);
+
       // if gcd(a,n) is nontrivial, then n composite
-      if(gcd(a,n) != 1 && gcd(a,n) != n){
+      if(g1 != 1 && g1 != n){
         output = false;
       }
+      // if gcd(full_power, n) is nontrivial, then n composite
+      else if(g2 != 1 && g2 != n){
+        output = false;
+      }
+      // if gcd(sans_q_power, n) is nontrivial, then n composite
+      else if(g3 != 1 && g3 != n){
+        output = false;
+      }
+      // if a^(n-1) = 1 mod n and gcd(a^{(n-1)/q}-1, n) = 1, we've passed for this prime
+      else if(full_power == 1 && )
     }
 
   }
