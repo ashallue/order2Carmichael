@@ -11,6 +11,9 @@ using namespace std;
 // primality using trial division
 bool is_prime_trialdivision(long n);
 
+// primality test via a base-b Fermat test.  False means 
+// provably composite.  True means probably prime.
+bool is_prime_fermat(long n, long b);
 
 // Helper functions
 // binary modular powering, computes a^e mod n

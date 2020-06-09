@@ -36,6 +36,16 @@ bool is_prime_trialdivision(long n){
   return output;
 }
 
+// primality test via a base-b Fermat test.  False means 
+// provably composite.  True means probably prime.
+bool is_prime_fermat(long n, long b){
+  // first compute b^(n-1) mod n using mod_power1
+  long power = mod_power1(b, n-1, n);
+
+  // now return boolean value of whether that power equals 1
+  return power == 1;
+}
+
 /* This next method is more efficient, but depends on having 
 the factorization of p-1 in hand.  Note that factoring is a hard problem in general, but with pseudoprime construction we often have the factorization given to us since we are checking divisors
 */
