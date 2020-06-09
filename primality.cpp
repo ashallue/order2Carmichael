@@ -69,7 +69,7 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
 
   // Outer loop is over the prime_factors vector, so checking all q | n-1
   for(long i = 0; i < prime_factors.size(); i++){
-    cout << prime_factors.at(i) << "\n";
+    cout << "prime = " << prime_factors.at(i) << "\n";
 
     // break out of the loop if output is false, since that means n proven composite
     if(output == false){
@@ -85,6 +85,8 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
       // compute the two powers needed
       full_power = mod_power1(a, n-1, n);
       sans_q_power = mod_power1(a, (n-1) / prime_factors.at(i), n) - 1;
+
+      cout << "full_power = " << full_power << " sans_q_power = " << sans_q_power << "\n";
 
       // compute gcds with n.  Unlikely to catch a factor, but worth checking
       g1 = gcd(a,n);
@@ -174,6 +176,11 @@ long mod_power2(long a, long e, long n){
       power = power >> 1;
     }
   }
+  // testing
+  for(long i = 0; i < bitlength; i++){
+    cout << bits[i] << " ";
+  }
+  cout << "\n";
   /* Step 2, given bits of e, do binary exponentiation */
 
   // initialize result to 1
@@ -189,6 +196,7 @@ long mod_power2(long a, long e, long n){
     if(i > 0){
       result = (result * result) % n;
     }
+    cout << "i = " << i << " result = " << result << "\n";
   }
 
   return result;

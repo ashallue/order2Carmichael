@@ -38,7 +38,10 @@ int main() {
 
   cout << "length of ps: " << ps.size() << " length of es: " << es.size() << "\n";
 
-  pocklington1(1299721, ps, es);
+  cout << "2^(n-1) mod n: " << mod_power2(2, 1299720, 1299721) << "\n";
+  
+
+  // pocklington1(1299721, ps, es);
   
   /*
   for(long i = 2; i < 20; i++){
