@@ -46,9 +46,26 @@ bool is_prime_fermat(long n, long b){
   return power == 1;
 }
 
-/* This next method is more efficient, but depends on having 
-the factorization of p-1 in hand.  Note that factoring is a hard problem in general, but with pseudoprime construction we often have the factorization given to us since we are checking divisors
+/* First version of Pocklington test.  This algorithm attempts to prove a number is prime.
+If the number is prime, the running time is expected polynomial.  If the number is composite, 
+it may be very slow, so make sure to apply a primality test first.
+Input is n along with a factorization of n-1 given by a pair of vector<longs>
+Output is a bool.  True means proven prime, False means failed to prove prime.
 */
+bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
+  // in English: for every prime q | n-1, fine a with a^(n-1) = 1 mod n, gcd(a^{(n-1)/q}-1, n) =1 
+  
+  // Output boolean is True unless proven otherwise
+  bool output = true;
+
+  // Outer loop is over the prime_factors vector, so checking all q | n-1
+  for(auto q = prime_factors.begin(); q != prime_factors.end(); ++i){
+    cout << q << " ";
+  }
+  cout << "\n";
+
+  return output;
+}
 
 /* This is a fast modular powering algorithm, also called binary exponentiation.  
 Reference: https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
