@@ -59,8 +59,8 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
   bool output = true;
 
   // Outer loop is over the prime_factors vector, so checking all q | n-1
-  for(auto q = prime_factors.begin(); q != prime_factors.end(); ++i){
-    cout << q << " ";
+  for(long i = 0; i < prime_factors.size(); i++){
+    cout << prime_factors.at(i) << " ";
   }
   cout << "\n";
 
