@@ -80,9 +80,11 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
     done = false;
     a = 2;
     while(!done){
+      cout << "a = " << a << "\n";
+
       // compute the two powers needed
       full_power = mod_power1(a, n-1, n);
-      sans_q_power = mod_power1(a, (n-1) / prime_factors.at(i), n);
+      sans_q_power = mod_power1(a, (n-1) / prime_factors.at(i), n) - 1;
 
       // compute gcds with n.  Unlikely to catch a factor, but worth checking
       g1 = gcd(a,n);
@@ -92,20 +94,34 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
       // if gcd(a,n) is nontrivial, then n composite
       if(g1 != 1 && g1 != n){
         output = false;
+        done = true;
       }
       // if gcd(full_power, n) is nontrivial, then n composite
       else if(g2 != 1 && g2 != n){
         output = false;
+        done = true;
       }
       // if gcd(sans_q_power, n) is nontrivial, then n composite
       else if(g3 != 1 && g3 != n){
         output = false;
+        done = true;
       }
       // if a^(n-1) = 1 mod n and gcd(a^{(n-1)/q}-1, n) = 1, we've passed for this prime
-      else if(full_power == 1 && )
-    }
+      else if(full_power == 1 && g3 == 1){
+        done = true;
+        cout << "for q = " << prime_factors.at(i) << " found a = " << a << "\n";
+      }
+      // otherwise increment a and try again.  Stop if a = n
+      else{
+        a++;
+        if(a == n){
+          done = true;
+          output = false;
+        }
+      }
+    } // end while loop
 
-  }
+  } // end for loop
   
 
   return output;
