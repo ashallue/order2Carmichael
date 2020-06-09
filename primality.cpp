@@ -58,11 +58,31 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
   // Output boolean is True unless proven otherwise
   bool output = true;
 
+  // boolean for the inner loop, a is used for generator search
+  bool done;
+  long a;
+
   // Outer loop is over the prime_factors vector, so checking all q | n-1
   for(long i = 0; i < prime_factors.size(); i++){
-    cout << prime_factors.at(i) << " ";
+    cout << prime_factors.at(i) << "\n";
+
+    // break out of the loop if output is false, since that means n proven composite
+    if(output == false){
+      break;
+    }
+
+    // we are looking for a generator a.  We start at 2 and continue until done
+    done = false;
+    a = 2;
+    while(!done){
+      // if gcd(a,n) is nontrivial, then n composite
+      if(gcd(a,n) != 1 && gcd(a,n) != n){
+        output = false;
+      }
+    }
+
   }
-  cout << "\n";
+  
 
   return output;
 }
@@ -132,4 +152,15 @@ long mod_power2(long a, long e, long n){
   }
 
   return result;
+}
+
+// gcd algorithm using standard recursive algorithm
+long gcd(long a, long b){
+  // base case happens if b = 0.  Note gcd(a,0) = a
+  if(b == 0){
+    return a;
+  }else{
+    // recursive case.  Thm: gcd(a,b) = gcd(b, a%b)
+    return gcd(b, a % b);
+  }
 }

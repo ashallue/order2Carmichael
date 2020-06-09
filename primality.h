@@ -30,3 +30,6 @@ bool pocklington1(long n, vector<long> prime_factors, vector<long> powers);
 long mod_power1(long a, long e, long n);
 
 long mod_power2(long a, long e, long n);
+
+// gcd algorithm using standard recursive algorithm
+long gcd(long a, long b);

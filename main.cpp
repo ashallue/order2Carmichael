@@ -24,6 +24,10 @@ int main() {
   cout << "101 is prime: " << is_prime_fermat(101, 2) << "\n";
   cout << "102 is prime: " << is_prime_fermat(102, 2) << "\n";
 
+  // testing gcd
+  cout << "gcd(15, 9) = " << gcd(15,9) << "\n";
+  cout << "gcd(15, 11) = " << gcd(15, 11) << "\n";
+
   // testing pocklington test.  1299721 is prime, 1299720 = 2^3 * 3 * 5 * 10831
   vector<long> ps;  
   ps.push_back(2); 
