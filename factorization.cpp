@@ -17,9 +17,7 @@ class Factorization{
     }
 
     //returns all the prime factors of x
-    vector<long> getPrimeFactors(){
-        
-
+    vector<long> getPrimeFactors(){ 
       return primes;
     }
 
