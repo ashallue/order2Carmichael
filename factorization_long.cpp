@@ -1,6 +1,18 @@
+/* This is part of the Order 2 Carmichael project
+Author: Alex Seehus, summer 2020
+PI: Andrew Shallue
+work performed at Illinois Wesleyan University
+*/
+
 #include <iostream>
 #include <vector>
 using namespace std;
+
+/* A class for storing the factorization of a number.
+ * This version uses only longs, so the size of the numbers is limited
+ * 32 bits on Windows machines, 64 bits on UNIX machines.
+ * Also notice no separate .h file.
+*/
 
 class FactorizationLong{
   private:
