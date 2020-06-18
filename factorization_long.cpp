@@ -12,7 +12,7 @@ class FactorizationLong{
     vector<long> powers;
   public:
     //constructor to initialize factors
-    Factorization(vector<long> f){
+    FactorizationLong(vector<long> f){
       factors = f;
     }
 
