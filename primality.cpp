@@ -54,9 +54,22 @@ the factorization of p-1 in hand.  Note that factoring is a hard problem in gene
 Reference: https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
 Iterative, runs in time $O(log e) word operations
 Computes a^e mod n
+
+Warning: both of these mod_power algorithms have problems if a or n is bigger than sqrt(bits_in_long),
+because a is squared before being reduced modulo n.  On a Windows machine, bits_in_long = 32,
+so the warning thrown is for the more restrictive case.
 */
 
 long mod_power1(long a, long e, long n){
+  // throw warning if a or n is > 2^(16)
+  long input_bound = 1;
+  for (long i = 0; i < 16; i++) {
+      input_bound = input_bound << 1;
+  }
+  if (a >= input_bound || n >= input_bound) {
+      cout << "Warning in mod_power1, input is at least 2^(16), errors will probably result\n";
+  }
+
   // start with our output set to 1, will grow as e shrinks
   long result = 1;
 
@@ -76,6 +89,15 @@ long mod_power1(long a, long e, long n){
 }
 
 long mod_power2(long a, long e, long n){
+  // throw warning if a or n is > 2^(16)
+  long input_bound = 1;
+  for (long i = 0; i < 16; i++) {
+      input_bound = input_bound << 1;
+  }
+  if (a >= input_bound || n >= input_bound) {
+      cout << "Warning in mod_power2, input is at least 2^(16), errors will probably result\n";
+  }
+
   /* Step 1, find the bit repr of e, store bits in an array */
 
   // create an array which contains the bit repr of e
