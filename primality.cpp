@@ -46,9 +46,88 @@ bool is_prime_fermat(long n, long b){
   return power == 1;
 }
 
-/* This next method is more efficient, but depends on having 
-the factorization of p-1 in hand.  Note that factoring is a hard problem in general, but with pseudoprime construction we often have the factorization given to us since we are checking divisors
+/* First version of Pocklington test.  This algorithm attempts to prove a number is prime.
+If the number is prime, the running time is expected polynomial.  If the number is composite, 
+it may be very slow, so make sure to apply a primality test first.
+Input is n along with a factorization of n-1 given by a pair of vector<longs>
+Output is a bool.  True means proven prime, False means failed to prove prime.
 */
+bool pocklington1(long n, vector<long> prime_factors, vector<long> powers){
+  // in English: for every prime q | n-1, fine a with a^(n-1) = 1 mod n, gcd(a^{(n-1)/q}-1, n) =1 
+  
+  // Output boolean is True unless proven otherwise
+  bool output = true;
+
+  // boolean for the inner loop, a is used for generator search
+  bool done;
+  long a;
+  // these are used in the inner loop for powers needed
+  long full_power;
+  long sans_q_power;
+  // these variables will store gcds
+  long g1; long g2; long g3;
+
+  // Outer loop is over the prime_factors vector, so checking all q | n-1
+  for(long i = 0; i < prime_factors.size(); i++){
+    cout << "prime = " << prime_factors.at(i) << "\n";
+
+    // break out of the loop if output is false, since that means n proven composite
+    if(output == false){
+      break;
+    }
+
+    // we are looking for a generator a.  We start at 2 and continue until done
+    done = false;
+    a = 2;
+    while(!done){
+      cout << "a = " << a << "\n";
+
+      // compute the two powers needed
+      full_power = mod_power1(a, n-1, n);
+      sans_q_power = mod_power1(a, (n-1) / prime_factors.at(i), n) - 1;
+
+      cout << "full_power = " << full_power << " sans_q_power = " << sans_q_power << "\n";
+
+      // compute gcds with n.  Unlikely to catch a factor, but worth checking
+      g1 = gcd(a,n);
+      g2 = gcd(full_power, n);
+      g3 = gcd(sans_q_power, n);
+
+      // if gcd(a,n) is nontrivial, then n composite
+      if(g1 != 1 && g1 != n){
+        output = false;
+        done = true;
+      }
+      // if gcd(full_power, n) is nontrivial, then n composite
+      else if(g2 != 1 && g2 != n){
+        output = false;
+        done = true;
+      }
+      // if gcd(sans_q_power, n) is nontrivial, then n composite
+      else if(g3 != 1 && g3 != n){
+        output = false;
+        done = true;
+      }
+      // if a^(n-1) = 1 mod n and gcd(a^{(n-1)/q}-1, n) = 1, we've passed for this prime
+      else if(full_power == 1 && g3 == 1){
+        done = true;
+        cout << "for q = " << prime_factors.at(i) << " found a = " << a << "\n";
+      }
+      // otherwise increment a and try again.  Stop if a = n
+      else{
+        a++;
+        if(a == n){
+          done = true;
+          output = false;
+        }
+      }
+    } // end while loop
+
+  } // end for loop
+  
+
+  return output;
+}
 
 /* This is a fast modular powering algorithm, also called binary exponentiation.  
 Reference: https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
@@ -119,6 +198,11 @@ long mod_power2(long a, long e, long n){
       power = power >> 1;
     }
   }
+  // testing
+  for(long i = 0; i < bitlength; i++){
+    cout << bits[i] << " ";
+  }
+  cout << "\n";
   /* Step 2, given bits of e, do binary exponentiation */
 
   // initialize result to 1
@@ -134,7 +218,19 @@ long mod_power2(long a, long e, long n){
     if(i > 0){
       result = (result * result) % n;
     }
+    cout << "i = " << i << " result = " << result << "\n";
   }
 
   return result;
+}
+
+// gcd algorithm using standard recursive algorithm
+long gcd(long a, long b){
+  // base case happens if b = 0.  Note gcd(a,0) = a
+  if(b == 0){
+    return a;
+  }else{
+    // recursive case.  Thm: gcd(a,b) = gcd(b, a%b)
+    return gcd(b, a % b);
+  }
 }
