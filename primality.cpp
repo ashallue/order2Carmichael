@@ -10,6 +10,22 @@ part of the constructing order 2 Carmichael numbers project
 // Input is an integer n, output is a boolean, True for prime
 // Importantly, these are all proofs of primality
 
+// trial division of n up to a bound B
+// returns bool.  False means provably composite, True means no factors less than B
+bool is_prime_trialdivision(ZZ n, ZZ b){  
+    bool output = true;
+    for (ZZ i = to_ZZ(2); i <= b; i++) {
+        if (n % i == 0) {
+            output = false;
+        }
+    }
+    return output;
+}
+
+/* *******************************************************************
+  All the functions below take longs as input
+*/
+
 // The first method is trial division: we check for divisors up to sqrt(n)
 bool is_prime_trialdivision(long n){
   // if n < 1, print an error, return false

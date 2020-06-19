@@ -7,8 +7,18 @@ part of summer project constructing order 2 Carmichael numbers
 // Importantly, these are all proofs of primality
 
 #include <vector>
+#include <NTL/ZZ.h>
 
 using namespace std;
+using namespace NTL;
+
+/************************functions with inputs as ZZ *****************/
+
+// trial division of n up to a bound B
+// returns bool.  False means provably composite, True means no factors less than B
+bool is_prime_trialdivision(ZZ n, ZZ b);
+
+/* ********************* functions with inputs as longs **************/
 
 // primality using trial division
 bool is_prime_trialdivision(long n);
