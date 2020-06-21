@@ -22,6 +22,26 @@ bool is_prime_trialdivision(ZZ n, ZZ b){
     return output;
 }
 
+// Fully factorize a number using trial division, and store in a Factorization type.
+// The largest factor is testing prime with ProbPrime from NTL, so some chance of error.
+Factorization trial_factor_complete(ZZ n) {
+    Factorization output;
+
+    // loop up to sqrt(n) by default (we hope to break earlier)
+    for (ZZ d = to_ZZ(2); d < SqrRoot(n); d++) {
+        // check if d divides n
+        if (n % d == 0) {
+            // if so, we can assume d is prime because of construction of the alg
+            // check if the prime is already in the factorization.  If it is, will be in the back
+            if (d == output.getPrimes().back()) {
+                cout << "same prime found" << "\n";
+            }
+        }
+    }
+
+    return output;
+}
+
 /* *******************************************************************
   All the functions below take longs as input
 */

@@ -8,6 +8,7 @@ part of summer project constructing order 2 Carmichael numbers
 
 #include <vector>
 #include <NTL/ZZ.h>
+#include "Factorization.h"
 
 using namespace std;
 using namespace NTL;
@@ -17,6 +18,12 @@ using namespace NTL;
 // trial division of n up to a bound B
 // returns bool.  False means provably composite, True means no factors less than B
 bool is_prime_trialdivision(ZZ n, ZZ b);
+
+// Fully factorize a number using trial division, and store in a Factorization type.
+// The largest factor is testing prime with ProbPrime from NTL, so some chance of error.
+Factorization trial_factor_complete(ZZ n);
+
+
 
 /* ********************* functions with inputs as longs **************/
 

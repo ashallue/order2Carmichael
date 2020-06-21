@@ -33,5 +33,9 @@ int main() {
   cout << f.factorProduct() << "\n";
   cout << f.validFactorization() << "\n";
   
-
+  cout << "\n";
+  cout << "Testing primality related algorithms\n";
+  cout << "Is 101 prime? " << ProbPrime(101) << "\n";
+  cout << "Is 1001 prime? " << ProbPrime(1001) << "\n";
+  cout << "Is 102 prime? " << ProbPrime(102) << "\n";
 }
