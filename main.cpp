@@ -9,6 +9,7 @@ Constructing order 2 Carmichael numbers
 #include "Factorization.h"
 
 using namespace std;
+using namespace NTL;
 
 int main() {
   std::cout << "Hello World!\n";
@@ -32,6 +33,7 @@ int main() {
 
   cout << f.factorProduct() << "\n";
   cout << f.validFactorization() << "\n";
+  f.print();
   
   cout << "\n";
   cout << "Testing primality related algorithms\n";

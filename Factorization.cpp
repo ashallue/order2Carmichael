@@ -44,3 +44,13 @@ ZZ Factorization::factorProduct() {
 bool Factorization::validFactorization() {
 	return primes.size() == powers.size();
 }
+
+// print primes and powers to stdout
+void Factorization::print() {
+	// print prime and its corresponding power in pairs
+	cout << "Factorization: ";
+	for (long i = 0; i < primes.size(); i++) {
+		cout << "( " << primes.at(i) << ", " << powers.at(i) << " )  ";
+	}
+	cout << "\n";
+}

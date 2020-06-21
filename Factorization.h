@@ -10,6 +10,7 @@ Alex Seehuus created a Factorization class based on long data type.  Here I'm co
 
 #include "NTL/ZZ.h"
 #include <vector>
+#include <iostream>
 
 using namespace std;
 using namespace NTL;
@@ -38,6 +39,9 @@ public:
 
 	// check that primes and powers are the same length
 	bool validFactorization();
+
+	// print primes and powers to stdout
+	void print();
 };
 
 #endif 
