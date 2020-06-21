@@ -27,14 +27,45 @@ bool is_prime_trialdivision(ZZ n, ZZ b){
 Factorization trial_factor_complete(ZZ n) {
     Factorization output;
 
+    // check if n is prime.  If so, we are done
+    if (ProbPrime(n)) {
+        output.getPrimes().push_back(to_ZZ(n));
+        output.getPowers().push_back(to_ZZ(1));
+        return output;
+    }
+
     // loop up to sqrt(n) by default (we hope to break earlier)
     for (ZZ d = to_ZZ(2); d < SqrRoot(n); d++) {
         // check if d divides n
         if (n % d == 0) {
             // if so, we can assume d is prime because of construction of the alg
             // check if the prime is already in the factorization.  If it is, will be in the back
-            if (d == output.getPrimes().back()) {
+            if (!output.getPrimes().empty() && d == output.getPrimes().back()) {
                 cout << "same prime found" << "\n";
+                // in this case increment the corresponding power
+                output.getPowers().back() = output.getPowers().back() + 1;
+            }
+            else {  
+                // if it is a new prime, push it onto the primes vector, push power 1 onto powers
+                output.getPrimes().push_back(d);
+                output.getPowers().push_back(to_ZZ(1));
+            }
+            // divide n by d
+            n = n / d;
+            //check if the new n is prime.  If so, add it to Factorization and break the loop
+            if (ProbPrime(n)) {
+                if (!output.getPrimes().empty() && d == output.getPrimes().back()) {
+                    cout << "same prime found" << "\n";
+                    // in this case increment the corresponding power
+                    output.getPowers().back() = output.getPowers().back() + 1;
+                }
+                else {
+                    // if it is a new prime, push it onto the primes vector, push power 1 onto powers
+                    output.getPrimes().push_back(d);
+                    output.getPowers().push_back(to_ZZ(1));
+                }
+                // break the loop
+                break;
             }
         }
     }
