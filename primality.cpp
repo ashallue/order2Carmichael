@@ -29,44 +29,34 @@ Factorization trial_factor_complete(ZZ n) {
 
     // check if n is prime.  If so, we are done
     if (ProbPrime(n)) {
-        output.getPrimes().push_back(to_ZZ(n));
-        output.getPowers().push_back(to_ZZ(1));
+        output.addPrime(n);
         return output;
     }
 
+    // let d be a potential divisor
+    ZZ d = to_ZZ(2);
+
     // loop up to sqrt(n) by default (we hope to break earlier)
-    for (ZZ d = to_ZZ(2); d < SqrRoot(n); d++) {
+    while(d < SqrRoot(n)) {
+        cout << "d = " << d << " n = " << n << "\n";
         // check if d divides n
         if (n % d == 0) {
-            // if so, we can assume d is prime because of construction of the alg
-            // check if the prime is already in the factorization.  If it is, will be in the back
-            if (!output.getPrimes().empty() && d == output.getPrimes().back()) {
-                cout << "same prime found" << "\n";
-                // in this case increment the corresponding power
-                output.getPowers().back() = output.getPowers().back() + 1;
-            }
-            else {  
-                // if it is a new prime, push it onto the primes vector, push power 1 onto powers
-                output.getPrimes().push_back(d);
-                output.getPowers().push_back(to_ZZ(1));
-            }
+            // if so, we can assume d is prime because of construction of the alg.  Add to factorization
+            output.addPrime(d);
+
             // divide n by d
             n = n / d;
+
             //check if the new n is prime.  If so, add it to Factorization and break the loop
             if (ProbPrime(n)) {
-                if (!output.getPrimes().empty() && d == output.getPrimes().back()) {
-                    cout << "same prime found" << "\n";
-                    // in this case increment the corresponding power
-                    output.getPowers().back() = output.getPowers().back() + 1;
-                }
-                else {
-                    // if it is a new prime, push it onto the primes vector, push power 1 onto powers
-                    output.getPrimes().push_back(d);
-                    output.getPowers().push_back(to_ZZ(1));
-                }
+                output.addPrime(n);
                 // break the loop
                 break;
             }
+        }
+        else {
+            // only increment d if it does not divide.  If it does, we want to check it repeatedly
+            d++;
         }
     }
 
