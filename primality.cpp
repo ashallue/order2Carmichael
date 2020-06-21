@@ -37,8 +37,8 @@ Factorization trial_factor_complete(ZZ n) {
     ZZ d = to_ZZ(2);
 
     // loop up to sqrt(n) by default (we hope to break earlier)
-    while(d < SqrRoot(n)) {
-        cout << "d = " << d << " n = " << n << "\n";
+    while(d <= SqrRoot(n)) {
+        
         // check if d divides n
         if (n % d == 0) {
             // if so, we can assume d is prime because of construction of the alg.  Add to factorization

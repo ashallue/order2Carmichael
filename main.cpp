@@ -43,8 +43,8 @@ int main() {
   cout << "Testing primality related algorithms\n";
   cout << "Is 101 prime? " << ProbPrime(101) << "\n";
   cout << "Is 1001 prime? " << ProbPrime(1001) << "\n";
-  cout << "Is 102 prime? " << ProbPrime(102) << "\n";
-  cout << "Factoring 16: \n";
-  f = trial_factor_complete(to_ZZ(16));
+  cout << "Is 8 prime? " << ProbPrime(8) << "\n";
+  cout << "Factoring 30030: \n";
+  f = trial_factor_complete(to_ZZ(30030 * 13));
   f.print();
 }
