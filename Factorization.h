@@ -40,6 +40,13 @@ public:
 	// check that primes and powers are the same length
 	bool validFactorization();
 
+	// check if a given prime is in the factorization
+	// if it is, return the corresponding index.  If not, return -1
+	long containsPrime(ZZ p);
+
+	// add a new prime to the factorization.  Added to the back, with power 1
+	void addPrime(ZZ p);
+
 	// print primes and powers to stdout
 	void print();
 };

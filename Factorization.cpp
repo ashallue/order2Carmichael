@@ -45,6 +45,41 @@ bool Factorization::validFactorization() {
 	return primes.size() == powers.size();
 }
 
+// check if a given prime is in the factorization
+// if it is, return the corresponding index.  If not, return -1
+long Factorization::containsPrime(ZZ p) {
+	// loop over the primes list
+	for (long i = 0; i < primes.size(); i++) {
+		if (primes.at(i) == p) {
+			return i;
+		}
+	}
+	// if we haven't found it in the loop, return 0
+	return -1;
+}
+
+// add a new prime to the factorization.  
+// if new, added to back of primes vector with corresponding power 1
+// if already exists in factorization, add one to power
+void Factorization::addPrime(ZZ p) {
+	// first check that p really is (probably) prime
+	if (!ProbPrime(p)) {
+		cout << "Error in addPrime, " << p << " is not prime\n";
+	}else{
+		// next check whether p is already in the Factorization
+		long p_index = containsPrime(p);
+		if (p_index >= 0) {
+			// add one to corresponding power
+			powers.at(p_index)++;
+		}
+		else {
+			// otherwise push it on the back
+			primes.push_back(p);
+			powers.push_back(to_ZZ(1));
+		}
+	}
+}
+
 // print primes and powers to stdout
 void Factorization::print() {
 	// print prime and its corresponding power in pairs

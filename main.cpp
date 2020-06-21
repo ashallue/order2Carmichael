@@ -34,12 +34,17 @@ int main() {
   cout << f.factorProduct() << "\n";
   cout << f.validFactorization() << "\n";
   f.print();
+  f.addPrime(to_ZZ(103));
+  f.print();
+  f.addPrime(to_ZZ(2));
+  f.print();
   
   cout << "\n";
   cout << "Testing primality related algorithms\n";
   cout << "Is 101 prime? " << ProbPrime(101) << "\n";
   cout << "Is 1001 prime? " << ProbPrime(1001) << "\n";
   cout << "Is 102 prime? " << ProbPrime(102) << "\n";
-  cout << "Factoring 16: " << p.back();
+  cout << "Factoring 16: \n";
   f = trial_factor_complete(to_ZZ(16));
+  f.print();
 }
