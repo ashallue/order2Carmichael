@@ -27,7 +27,7 @@ public:
 	// default constructor makes both vectors empty
 	Factorization();
 	// this constructor takes a pair of vectors as input
-	Factorization(vector<ZZ> primes, vector<ZZ> powers);
+	Factorization(vector<ZZ> input_primes, vector<ZZ> input_powers);
 
 	// getter functions
 	vector<ZZ> getPrimes();

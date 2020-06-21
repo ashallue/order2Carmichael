@@ -6,6 +6,7 @@ Constructing order 2 Carmichael numbers
 #include <cmath>
 #include "primality.h"
 #include <vector>
+#include "Factorization.h"
 
 using namespace std;
 
@@ -23,4 +24,14 @@ int main() {
   cout << is_prime_trialdivision(to_ZZ(14039), to_ZZ(23)) << "\n";
   cout << is_prime_trialdivision(to_ZZ(14039), to_ZZ(120)) << "\n";
   
+  // Testing Factorization class on 2^5 * 11 * 41^2 * 101 = 59762912
+  Factorization f; vector<ZZ> p; vector<ZZ> pow;
+  p.push_back(to_ZZ(2)); p.push_back(to_ZZ(11)); p.push_back(to_ZZ(41)); p.push_back(to_ZZ(101));
+  pow.push_back(to_ZZ(5)); pow.push_back(to_ZZ(1)); pow.push_back(to_ZZ(2)); pow.push_back(to_ZZ(1));
+  f = Factorization(p, pow);
+
+  cout << f.factorProduct() << "\n";
+  cout << f.validFactorization() << "\n";
+  
+
 }
