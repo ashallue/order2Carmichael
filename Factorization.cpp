@@ -18,11 +18,11 @@ Factorization::Factorization(vector<ZZ> input_primes, vector<ZZ> input_powers) {
 }
 
 // getter functions
-vector<ZZ> Factorization::getPrimes() {
-	return primes;
+const vector<ZZ>* Factorization::getPrimes() {
+	return &primes;
 }
-vector<ZZ> Factorization::getPowers() {
-	return powers;
+const vector<ZZ>* Factorization::getPowers() {
+	return &powers;
 }
 
 // return the number n being represented

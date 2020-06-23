@@ -47,4 +47,10 @@ int main() {
   cout << "Factoring 30030: \n";
   f = trial_factor_complete(to_ZZ(30030 * 13));
   f.print();
+
+  cout << "\n";
+  cout << "Testing getter functions which are now pointers\n";
+  const vector<ZZ>* ps = f.getPrimes();
+  cout << ps->at(0) << "\n";
+
 }

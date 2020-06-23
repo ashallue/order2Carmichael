@@ -23,7 +23,13 @@ bool is_prime_trialdivision(ZZ n, ZZ b);
 // The largest factor is testing prime with ProbPrime from NTL, so some chance of error.
 Factorization trial_factor_complete(ZZ n);
 
-
+/* ZZ version of Pocklington test.  This algorithm attempts to prove a number is prime.
+If the number is prime, the running time is expected polynomial.  If the number is composite,
+it may be very slow, so make sure to apply a primality test first.
+Input is n along with a factorization of n-1 given by a pair of vector<longs>
+Output is a bool.  True means proven prime, False means failed to prove prime.
+*/
+bool pocklington(ZZ n, Factorization f);
 
 /* ********************* functions with inputs as longs **************/
 
@@ -40,7 +46,7 @@ it may be very slow, so make sure to apply a primality test first.
 Input is n along with a factorization of n-1 given by a pair of vector<longs>
 Output is a bool.  True means proven prime, False means failed to prove prime.
 */
-bool pocklington1(long n, vector<long> prime_factors, vector<long> powers);
+bool pocklington_long(long n, vector<long> prime_factors, vector<long> powers);
 
 // Helper functions
 // binary modular powering, computes a^e mod n

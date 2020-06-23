@@ -30,9 +30,11 @@ public:
 	// this constructor takes a pair of vectors as input
 	Factorization(vector<ZZ> input_primes, vector<ZZ> input_powers);
 
-	// getter functions
-	vector<ZZ> getPrimes();
-	vector<ZZ> getPowers();
+	// getter functions.  Note they return a constant pointer to a vector<ZZ>
+	// to initialize, do code like this:  const vector<ZZ> * ps = ps.getPrimes();
+	// then you can access elements uing this syntax: ps->at(i).  The arrow is a dot after a de-reference.
+	const vector<ZZ>* getPrimes();
+	const vector<ZZ>* getPowers();
 
 	// return the number n being represented
 	ZZ factorProduct();
