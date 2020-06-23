@@ -87,7 +87,7 @@ bool pocklington(ZZ n, Factorization f) {
 
     // Outer loop is over the prime_factors vector, so checking all q | n-1
     for (long i = 0; i < ps->size(); i++) {
-        cout << "prime = " << ps->at(i) << "\n";
+        //cout << "prime = " << ps->at(i) << "\n";
 
         // break out of the loop if output is false, since that means n proven composite
         if (output == false) {
@@ -98,13 +98,13 @@ bool pocklington(ZZ n, Factorization f) {
         done = false;
         a = to_ZZ(2);
         while (!done) {
-            cout << "a = " << a << "\n";
+            //cout << "a = " << a << "\n";
 
             // compute the two powers needed
             full_power = PowerMod(a, n - 1, n);
             sans_q_power = PowerMod(a, (n - 1) / ps->at(i), n) - 1;
 
-            cout << "full_power = " << full_power << " sans_q_power = " << sans_q_power << "\n";
+            //cout << "full_power = " << full_power << " sans_q_power = " << sans_q_power << "\n";
 
             // compute gcds with n.  Unlikely to catch a factor, but worth checking
             g1 = GCD(a, n);
@@ -129,7 +129,7 @@ bool pocklington(ZZ n, Factorization f) {
             // if a^(n-1) = 1 mod n and gcd(a^{(n-1)/q}-1, n) = 1, we've passed for this prime
             else if (full_power == 1 && g3 == 1) {
                 done = true;
-                cout << "for q = " << ps->at(i) << " found a = " << a << "\n";
+                //cout << "for q = " << ps->at(i) << " found a = " << a << "\n";
             }
             // otherwise increment a and try again.  Stop if a = n
             else {

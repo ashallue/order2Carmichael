@@ -45,4 +45,15 @@ int main() {
   const vector<ZZ>* ps = f.getPrimes();
   cout << ps->at(0) << "\n";
 
+  cout << "\n";
+  cout << "Testing ZZ version of Pocklington\n";
+  for (ZZ n = to_ZZ(2); n < to_ZZ(100000); n++) {
+	  if (n % 10000 == 0) {
+		  cout << "checkpoint: " << n << "\n";
+	  }
+	  if (ProbPrime(n) != pocklington(n, trial_factor_complete(n - 1))) {
+		  cout << n << "\n";
+	  }
+  }
+
 }
