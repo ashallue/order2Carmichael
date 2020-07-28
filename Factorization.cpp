@@ -18,10 +18,10 @@ Factorization::Factorization(vector<ZZ> input_primes, vector<ZZ> input_powers) {
 }
 
 // getter functions
-const vector<ZZ>* Factorization::getPrimes() {
+vector<ZZ>* Factorization::getPrimes() {
 	return &primes;
 }
-const vector<ZZ>* Factorization::getPowers() {
+vector<ZZ>* Factorization::getPowers() {
 	return &powers;
 }
 
